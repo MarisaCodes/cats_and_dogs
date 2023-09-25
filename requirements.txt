@@ -1,0 +1,6 @@
+tensorflow
+matplotlib
+numpy
+opencv-python==4.8.0.76
+Flask==2.3.3
+Flask-Session

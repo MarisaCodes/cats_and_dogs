@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block title %}Cat or dog?{% endblock %} {% block
+head %}
+<link rel="stylesheet" href="static/index.css" />
+{% endblock %} {% block body %}
+
+<div class="wrapper">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for cat, msg in messages %}
+  <div class="message {{cat}}">
+    {{ msg }}
+    <div class="cancel">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+  <div class="container">
+    <h1>Is it a cat or is it a dog? 🤔</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input
+        type="file"
+        name="img"
+        id="img"
+        accept="image/png, image/jpeg, image/jpg, image/webp"
+      />
+      <input type="submit" value="Upload" />
+    </form>
+    {% if result %}
+    <div class="result">
+      <div style="font-weight: bold">
+        Result:
+        <span style="font-weight: initial">{{result}}</span>
+      </div>
+      <div style="font-weight: bold">
+        Confidence:
+        <span style="font-weight: initial">{{ confidence }}</span>
+      </div>
+      <div style="margin-top: 20px">Uploaded image:</div>
+      <img src="{{ src }}" alt="picture of  {{ result }}" />
+    </div>
+    {% endif %}
+  </div>
+</div>
+<script>
+  const el = {
+    cancel: document.querySelector(".cancel"),
+    message: document.querySelector(".message"),
+  };
+  el.cancel?.addEventListener("click", (e) => {
+    el.message.style.display = "none";
+  });
+  if (el.message)
+    setTimeout(() => {
+      el.message.style.display = "none";
+    }, 2500);
+</script>
+{% endblock %}

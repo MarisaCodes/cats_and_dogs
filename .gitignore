@@ -1,0 +1,6 @@
+venv
+imgs
+x.npy
+y.npy
+__pycache__
+test
