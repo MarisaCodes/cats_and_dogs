@@ -5,7 +5,7 @@ from pprint import pprint
 
 LABELS = ["Dog", "Cat"]
 IMG_SIZE = 100
-model = keras.models.load_model("model/cats_and_dogs.h5")
+model = keras.models.load_model("cats_and_dogs.keras")
 
 
 def process_img(data):
